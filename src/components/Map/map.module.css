@@ -1,0 +1,40 @@
+.map {
+  width: 100%;
+  height: auto;            /* keep auto: it keeps the proportions and the log stays aligned */
+  display: block;
+  background: var(--bg-2);
+  border: 4px solid var(--cream-d);
+  box-shadow: 4px 4px 0 #000;
+  shape-rendering: crispEdges;
+}
+.bg { image-rendering: pixelated; }
+ 
+.link { stroke: var(--red); stroke-width: 3; stroke-dasharray: 6 6; opacity: 0.65; }
+ 
+.node { cursor: pointer; outline: none; }
+.markerOutline { fill: var(--bg); }
+.marker { fill: var(--cream); }
+.started .marker { fill: var(--gold); }
+.reached .marker { fill: var(--green); }
+.cross { fill: var(--bg); }
+.locked { opacity: 0.6; }
+.locked .marker { fill: var(--mut); }
+ 
+.ring { fill: none; stroke: var(--red); stroke-width: 4; display: none; }
+.selected .ring { display: block; animation: blink 0.9s steps(2) infinite; }
+.node:focus-visible .ring { display: block; stroke: var(--blue); }
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .selected .ring { animation: none; } }
+ 
+.plaque { fill: var(--bg); stroke: var(--cream-d); stroke-width: 3; }
+.selected .plaque { stroke: var(--red); }
+.label {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  fill: var(--cream);
+  text-anchor: middle;
+  pointer-events: none;
+}
+.pip { fill: var(--mut); }
+.pipOn { fill: var(--red); }
+ 
