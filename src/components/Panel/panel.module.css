@@ -1,0 +1,72 @@
+.panel { display: flex; flex-direction: column; gap: 10px; }
+.box {
+  background: var(--bg-2);
+  border: 4px solid var(--cream-d);
+  box-shadow: 4px 4px 0 #000;
+  padding: 10px;
+}
+.title { margin: 0 0 6px; font-size: 11px; color: var(--cream); font-weight: normal; }
+.blurb { margin: 0; color: var(--mut); font-size: 8px; line-height: 1.9; }
+
+.chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.chip {
+  border: 3px solid currentColor;
+  background: var(--bg-2);
+  padding: 6px 4px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.chip small { font-size: 7px; }
+.chip b { font-size: 12px; font-weight: normal; }
+.blue { color: var(--blue); }
+.red { color: var(--red); }
+.orange { color: var(--orange); }
+
+.leaders { font-size: 8px; color: var(--cream); letter-spacing: 1px; }
+
+/* ---------- Pixel buttons: notched corners + dithered strip (like the radio screen) ---------- */
+.action {
+  --btn: var(--red);      /* main color of this button */
+  --strip: var(--btn);    /* color of the dither strip (flips on hover) */
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 8px);
+  margin: 4px;            /* room for the 4px "border" drawn with box-shadow */
+  padding: 8px 10px 22px; /* extra bottom padding = space for the strip */
+  border: 0;
+  background-color: var(--bg-2);
+  color: var(--btn);
+  font-size: 9px;
+  text-align: left;
+  cursor: pointer;
+
+  /* border with the four corner pixels missing (the notched, rounded look) */
+  box-shadow:
+    -4px 0 0 0 var(--btn), 4px 0 0 0 var(--btn),
+    0 -4px 0 0 var(--btn), 0 4px 0 0 var(--btn);
+
+  /* three rows of black squares fading upward: 50%, 50% shifted (checker), 25% */
+  background-image:
+    linear-gradient(90deg, var(--strip) 50%, transparent 0),
+    linear-gradient(90deg, var(--strip) 50%, transparent 0),
+    linear-gradient(90deg, var(--strip) 25%, transparent 0);
+  background-size: 8px 4px, 8px 4px, 16px 4px;
+  background-position: 0 100%, 4px calc(100% - 4px), 0 calc(100% - 8px);
+  background-repeat: repeat-x;
+}
+/* selected / hovered = inverted, like the DSC button in the reference */
+.action:hover:not(:disabled), .action:focus-visible {
+  --strip: var(--bg);
+  background-color: var(--btn);
+  color: var(--bg);
+  outline: none;
+}
+.action:disabled { opacity: 0.3; cursor: not-allowed; }
+.end { --btn: var(--gold); }
+
+.over { border-color: var(--gold); }
+.over p { margin: 0 0 8px; font-size: 8px; line-height: 1.9; color: var(--cream); }
